@@ -17,37 +17,37 @@ namespace DACS
             name: "Home",
             url: "trang-chu",
             defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-            namespaces: new[] { "OnlineCourse.Controllers" });
+            namespaces: new[] { "DACS.Controllers" });
 
             routes.MapRoute(
             name: "Product Category",
             url: "khoa-hoc/{metatitle}-{cateId}",
             defaults: new { controller = "Product", action = "Category", id = UrlParameter.Optional },
-            namespaces: new[] { "OnlineCourse.Controllers" });
+            namespaces: new[] { "DACS.Controllers" });
 
             routes.MapRoute(
             name: "Exam Category",
             url: "kiem-tra/{metatitle}-{Type}",
             defaults: new { controller = "Exam", action = "Category", id = UrlParameter.Optional },
-            namespaces: new[] { "OnlineCourse.Controllers" });
+            namespaces: new[] { "DACS.Controllers" });
 
             routes.MapRoute(
             name: "Product Detail",
             url: "chi-tiet/{metatitle}-{id}-{detailid}",
             defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional },
-            namespaces: new[] { "OnlineCourse.Controllers" });
+            namespaces: new[] { "DACS.Controllers" });
 
             routes.MapRoute(
             name: "Login",
             url: "dang-nhap",
             defaults: new { controller = "User", action = "Login", id = UrlParameter.Optional },
-            namespaces: new[] { "OnlineCourse.Controllers" });
+            namespaces: new[] { "DACS.Controllers" });
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new[] { "OnlineCourse.Controllers" });
+                namespaces: new[] { "DACS.Controllers" });
         }
     }
 }
