@@ -56,7 +56,7 @@ namespace DACS.Models
         [StringLength(250)]
         public string MetaDescriptions { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
 
         public int? ViewCount { get; set; }
 
