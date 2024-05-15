@@ -1669,6 +1669,7 @@
     <Content Include="assets\pdfjs\svg\chevron-left-solid.svg" />
     <Content Include="assets\pdfjs\svg\chevron-right-solid.svg" />
     <Content Include="assets\pdfjs\svg\fullscreen.png" />
+    <Content Include="bin\CKFinder.dll" />
     <Content Include="bin\DACS.dll" />
     <Content Include="bin\DACS.dll.config" />
     <Content Include="bin\DACS.pdb" />
@@ -1679,7 +1680,6 @@
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
-    <Content Include="bin\moltran.rar" />
     <Content Include="bin\Newtonsoft.Json.Bson.dll" />
     <Content Include="bin\Newtonsoft.Json.Bson.pdb" />
     <Content Include="bin\Newtonsoft.Json.Bson.xml" />
