@@ -103,10 +103,14 @@
             e.preventDefault();
             var finder = new CKFinder();
             finder.selectActionFunction = function (url) {
-                $('#m_Image').val(url);
+                $('#m_image').val(url);
             };
             finder.popup();
         })
+
+        var ckEditor = CKEDITOR.replace('m_detail', {
+            customCongif: '< script src="~/assets/admin/js/plugins/ckeditor/config.js',
+        });
     </script>
 
 
@@ -187,14 +191,40 @@
                         <div class="form-group">
                             <label for="field-2" class="control-label">Ảnh đại diện</label>
                             <input type="text" class="form-control" id="m_image" placeholder="Chọn ảnh">
-                            <a id="btnSelectImage" href="#">Chọn ảnh</a>
+                            &nbsp;<a id="btnSelectImage" href="#">Chọn ảnh</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Thoát</button>
-                <button type="button" id="btnAddNew" class="btn btn-info waves-effect waves-light">Tạo mới</button>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group no-margin">
+                        <label for="field-7" class="control-label">Nội dung khóa học</label>
+                        <input type="text" class="form-control" id="m_detail" placeholder="Nội dung khóa học">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group no-margin">
+                        <label for="field-7" class="control-label">List loại file (0 video,1 là pdf)</label>
+                        <input type="text" class="form-control" id="m_listtype">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group no-margin">
+                    <label for="field-7" class="control-label">List tên file</label>
+                    <input type="text" class="form-control" id="m_listfile">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Thoát</button>
+        <button type="button" id="btnAddNew" class="btn btn-info waves-effect waves-light">Tạo mới</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

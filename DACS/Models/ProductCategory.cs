@@ -12,6 +12,9 @@ namespace DACS.Models
         public long ID { get; set; }
 
         [StringLength(250)]
+        
+        public string Name { get; set; }
+
         public string MetaTitle { get; set; }
 
         public long? ParentID { get; set; }
