@@ -17,6 +17,7 @@ namespace DACS.Areas.Admin.Controllers
             var dao = new ProductDAO();
             var model = dao.ListAllPaging(searchString, page, pageSize);
             ViewBag.SearchString = searchString;
+            SetViewBag();
             return View(model);
         }
 
@@ -26,5 +27,50 @@ namespace DACS.Areas.Admin.Controllers
             new ProductDAO().Delete(id);
             return RedirectToAction("Index");
         }
+        public void SetViewBag(long? selectId = null)
+        {
+            var dao = new ProductCategoryDAO();
+            ViewBag.CategoryID = dao.ListAll();
+        }
+
+        [HttpPost]
+        public JsonResult AddProductAjax(string name, string code, string metatilte, string description, string image, string categoryid, string detail , string listtype, string listfile)
+        {
+            try
+            {
+                var dao = new ProductDAO();
+                Product product = new Product();
+
+                product.Name = name;
+                product.CreateDate= DateTime.Now;
+                product.Code = code;
+                product.MetaTitle = metatilte;
+                product.Description = description;
+                product.Image = image;
+                product.CategoryID = Convert.ToInt16(categoryid);
+                product.Status = true;
+                product.Detail = detail;
+                product.ListType = listtype;
+                product.ListFile = listfile;
+                
+                long id = dao.Insert(product);
+                if (id > 0)
+                {
+                    return Json(new { status = true });
+                }
+                else
+                {
+                    return Json(new { status = false });
+                }
+            }
+            catch
+            {
+                return Json(new
+                {
+                    status = false
+                });
+            }
+        }
+
     }
 }

@@ -43,5 +43,11 @@ namespace DACS.DAO
                 return false;
             }
         }
+        public long Insert(Product entity)
+        {
+            db.Products.Add(entity);
+            db.SaveChanges();
+            return entity.ID;
+        }
     }
 }

@@ -12,8 +12,6 @@ namespace DACS.Models
         public long ID { get; set; }
 
         [StringLength(250)]
-        
-        public string Name { get; set; }
 
         public string MetaTitle { get; set; }
 
@@ -34,5 +32,6 @@ namespace DACS.Models
         public bool? Status { get; set; }
 
         public bool? ShowOnHome { get; set; }
+        public string Name { get; set; }
     }
 }
