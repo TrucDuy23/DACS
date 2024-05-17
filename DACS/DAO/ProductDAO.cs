@@ -20,9 +20,13 @@ namespace DACS.DAO
             db.SaveChanges();
             return entity.ID;
         }
-        public IEnumerable<Product> ListAllPaging(string searchString, int page, int pagesize)
+        public IEnumerable<Product> ListAllPaging(long cateID, string searchString, int page, int pagesize)
         {
             IQueryable<Product> model = db.Products;
+            if (cateID != -1)
+            {
+                model = model.Where(x => x.CategoryID == cateID);
+            }
             if (!string.IsNullOrEmpty(searchString))
             {
                 model = model.Where(x => x.Name.Contains(searchString) || x.MetaTitle.Contains(searchString));
@@ -48,6 +52,36 @@ namespace DACS.DAO
             db.Products.Add(entity);
             db.SaveChanges();
             return entity.ID;
+        }
+        public Product ViewDetail(int id)
+        {
+
+            return db.Products.Find(id);
+        }
+        public bool Update(Product entity)
+        {
+            try
+            {
+                var product = db.Products.Find(entity.ID);
+                product.Name = entity.Name;
+                product.Code = entity.Code;
+                product.MetaTitle = entity.MetaTitle;
+                product.Description = entity.Description;
+                product.Detail = entity.Detail;
+                product.Image = entity.Image;
+                product.ListType = entity.ListType;
+                product.ListFile = entity.ListFile;
+                product.CategoryID = entity.CategoryID;
+
+                db.SaveChanges();
+                return true;
+
+            }
+            catch (Exception)
+            {
+                return false;
+
+            }
         }
     }
 }
