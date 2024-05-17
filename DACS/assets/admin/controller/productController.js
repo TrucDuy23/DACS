@@ -75,7 +75,7 @@
                 return;
             }
             $.ajax({
-                url: "Product/UpdateProductAjax",
+                url: "/Admin/Product/UpdateProductAjax",
                 data: JSON.stringify(ContributeModel),
                 contentType: 'application/json; charset=utf-8',
                 type: "POST",
@@ -143,7 +143,7 @@
                 return;
             }
             $.ajax({
-                url: "/Product/AddProductAjax",
+                url: "/Admin/Product/AddProductAjax",
                 data:JSON.stringify(ContributeModel),              
                 contentType: 'application/json; charset=utf-8',
                 type: "POST",
@@ -170,7 +170,7 @@
                                 message: "Thêm khóa học lỗi",
                                 closeButton: false
                             }
-                           );
+                        );
                     }
                 }
             });

@@ -1,5 +1,4 @@
 ﻿@model PagedList.IPagedList<DACS.Models.Product>
-
 @{
     ViewBag.Title = "Quản trị khóa học";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -14,7 +13,6 @@
     <!-- App css -->
     <link href="/assets/admin/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" />
 }
-
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -26,13 +24,9 @@
                         </td>
                         <td style="text-align:right;">
                             <button type="button" class="btn btn-info waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg">Thêm mới</button>
-
                         </td>
                     </tr>
-
                 </table>
-
-
             </div>
             <div class="card-body">
                 <div class="row">
@@ -48,7 +42,6 @@
                                     <th>Trạng thái</th>
                                     <th></th>
                                     <th></th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -62,7 +55,6 @@
                                         <td>@item.Status</td>
                                         <td><a href="#" class="badge bg-info">@Html.Raw(@item.Status ? "<strong>Kích hoạt</strong>" : "<font style='color:red;'>Khóa</font>")</a></td>
                                         <td style="text-align:center;width:15px;vertical-align:middle;">
-
                                             @Ajax.ActionLink("Xóa khóa học", "Delete", new { @id = item.ID }, new AjaxOptions
                                             {
                                                 Confirm = "Bạn có muốn xóa không ?",
@@ -72,11 +64,8 @@
                                             {
                                                 @class = "badge badge-danger"
                                             })
-
-
                                         </td>
                                     </tr>
-
                                 }
                             </tbody>
                         </table>
@@ -89,17 +78,14 @@
 @section ClientScript
 {
     <script src="/assets/admin/libs/bootstrap/js/bootbox.min.js"></script>
-
     //Chay Ajax
     <script src="/assets/admin/libs/jquery/jquery.min.js"></script>
     <script src="/assets/admin/libs/jquery/jquery.unobtrusive-ajax.min.js"></script>
     <script src="/assets/admin/libs/jquery-easing/jquery.easing.min.js"></script>
-    
+
     <script src="~/assets/admin/js/plugins/ckeditor/ckeditor.js"></script>
     <script src="~/assets/admin/js/plugins/ckfinder/ckfinder.js"></script>
-
     <script>
-
         $('#btnSelectImage').on('click', function (e) {
             e.preventDefault();
             var finder = new CKFinder();
@@ -108,13 +94,10 @@
             };
             finder.popup();
         })
-
         var ckEditor = CKEDITOR.replace('m_detail', {
-            customCongif: '< script src="~/assets/admin/js/plugins/ckeditor/config.js',
+            customConfig: '/assets/admin/js/plugins/ckeditor/config.js',
         });
     </script>
-
-
     <script src="/assets/admin/libs/datatables/jquery.dataTables.min.js"></script>
     <script src="/assets/admin/libs/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="/assets/admin/libs/datatables/dataTables.responsive.min.js"></script>
@@ -130,13 +113,13 @@
     <script src="/assets/admin/libs/datatables/dataTables.scroller.min.js"></script>
     <!-- Datatables init -->
     <script src="/assets/admin/js/pages/datatables.init.js"></script>
-    <script src="~/assets/admin/controller/productController.js"></script>
+    <script src="/assets/admin/controller/productController.js"></script>
 }
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myLargeModalLabel">Màn Hình Thêm Mới Khóa Học</h5>
+                <h5 class="modal-title" id="myLargeModalLabel">Màn hình thêm khóa học</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">
@@ -156,15 +139,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="field-2" class="control-label">Tên thể hiện</label>
-                            <input type="text" class="form-control" id="m_metatiltle" placeholder="Tên thể hiện">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="field-3" class="control-label">Họ và tên</label>
-                            <input type="text" class="form-control" id="m_name" placeholder="Họ và tên">
+                            <input type="text" class="form-control" id="m_metatitle" placeholder="Tên thể hiện">
                         </div>
                     </div>
                 </div>
@@ -180,50 +155,57 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="field-1" class="control-label">Thể Loại</label>
-                            <select class="form-control" id="ddlCategory" placeholder="----Chọn thể loại----">
+                            <label for="field-1" class="control-label">Thể loại</label>
+                            <select class="form-control" id="ddlCategory" placeholder="---Chọn thể loại---">
                                 @foreach (var item in productCategory)
                                 {
                                     <option value="@item.ID">@item.Name</option>
+
                                 }
+
+
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="field-2" class="control-label">Ảnh đại diện</label>
-                            <input type="text" class="form-control" id="m_image" placeholder="Chọn ảnh">
+                            <input type="text" class="form-control" id="m_image" placeholder="Hình ảnh">
                             &nbsp;<a id="btnSelectImage" href="#">Chọn ảnh</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group no-margin">
-                        <label for="field-7" class="control-label">Nội dung khóa học</label>
-                        <input type="text" class="form-control" id="m_detail" placeholder="Nội dung khóa học">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group no-margin">
+                            <label for="field-7" class="control-label">Nội dung khóa học</label>
+                            <input type="text" class="form-control" id="m_detail" placeholder="Nội dung khóa học">
+
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group no-margin">
-                        <label for="field-7" class="control-label">List loại file (0 video,1 là pdf)</label>
-                        <input type="text" class="form-control" id="m_listtype">
-            </div>
-        </div>
-            <div class="col-md-6">
-                <div class="form-group no-margin">
-                    <label for="field-7" class="control-label">List tên file</label>
-                    <input type="text" class="form-control" id="m_listfile">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group no-margin">
+                            <label for="field-7" class="control-label">List loại file (0 video,1 là pdf)</label>
+                            <input type="text" class="form-control" id="m_listtype">
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group no-margin">
+                            <label for="field-7" class="control-label">List tên file</label>
+                            <input type="text" class="form-control" id="m_listfile">
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="modal-footer">
+            <div class="modal-footer">
                 <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Thoát</button>
                 <button type="button" id="btnAddNew" class="btn btn-info waves-effect waves-light">Tạo mới</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+</div>

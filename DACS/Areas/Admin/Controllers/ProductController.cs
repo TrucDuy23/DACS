@@ -34,7 +34,7 @@ namespace DACS.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddProductAjax(string name, string code, string metatilte, string description, string image, string categoryid, string detail , string listtype, string listfile)
+        public JsonResult AddProductAjax(string name, string code, string metatitle, string description, string image, string categoryid, string detail , string listtype, string listfile)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace DACS.Areas.Admin.Controllers
                 product.Name = name;
                 product.CreateDate= DateTime.Now;
                 product.Code = code;
-                product.MetaTitle = metatilte;
+                product.MetaTitle = metatitle;
                 product.Description = description;
                 product.Image = image;
                 product.CategoryID = Convert.ToInt16(categoryid);

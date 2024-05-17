@@ -12,7 +12,8 @@ namespace DACS.Models
         public long ID { get; set; }
 
         [StringLength(250)]
-
+        public string Name { get; set; }
+        [StringLength(250)]
         public string MetaTitle { get; set; }
 
         public long? ParentID { get; set; }
@@ -32,6 +33,6 @@ namespace DACS.Models
         public bool? Status { get; set; }
 
         public bool? ShowOnHome { get; set; }
-        public string Name { get; set; }
+
     }
 }
