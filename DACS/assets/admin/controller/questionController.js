@@ -18,7 +18,7 @@
                 return;
             }
             $.ajax({
-                url: "/Question/AddQuestionAjax",
+                url: "/Admin/Question/AddQuestionAjax",
                 data:
                     {
                         name: name.value,
@@ -69,7 +69,7 @@
 
 
             $.ajax({
-                url: "/Question/UpdateQuestionAjax",
+                url: "/Admin/Question/UpdateQuestionAjax",
                 data:
                     {
                         id: listid,

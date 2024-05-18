@@ -24,6 +24,6 @@ namespace DACS.Models
 
         public long? ProductID { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
     }
 }

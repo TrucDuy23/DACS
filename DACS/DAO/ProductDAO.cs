@@ -14,12 +14,6 @@ namespace DACS.DAO
         {
             db = new DBModel();
         }
-        public long Insert(User entity)
-        {
-            db.Users.Add(entity);
-            db.SaveChanges();
-            return entity.ID;
-        }
         public IEnumerable<Product> ListAllPaging(long cateID, string searchString, int page, int pagesize)
         {
             IQueryable<Product> model = db.Products;
@@ -83,5 +77,36 @@ namespace DACS.DAO
 
             }
         }
-    }
+        public List<Product> ListAllProduct()
+        {
+            return db.Products.Where(x => x.Status == true).OrderByDescending(x => x.ID).ToList();
+        }
+        public List<Product> ListByCategoryID(string searchString, long CategoryID)
+        {
+            IOrderedQueryable<Product> model = db.Products;
+            if (CategoryID == 0)
+            {
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    return model.Where(x => x.Name.Contains(searchString) || x.Description.Contains(searchString)).Where(x => x.Status).OrderByDescending(x => x.CreateDate).ToList();
+                }
+                else
+                {
+                    return model.Where(x => x.Status).OrderByDescending(x => x.CreateDate).ToList();
+                }
+
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    return model.Where(x => x.Name.Contains(searchString) || x.Description.Contains(searchString)).Where(x => x.Status && x.CategoryID == CategoryID).OrderByDescending(x => x.CreateDate).ToList();
+                }
+                else
+                {
+                    return model.Where(x => x.Status && x.CategoryID == CategoryID).OrderByDescending(x => x.CreateDate).ToList();
+                }
+            }
+        }
+    } 
 }

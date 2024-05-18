@@ -46,8 +46,8 @@ namespace DACS.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Product>()
-            .Property(e => e.Code)
-            .IsUnicode(false);
+                .Property(e => e.Code)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Product>()
                 .Property(e => e.MetaTitle)

@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +16,7 @@ namespace DACS.Areas.Admin.Controllers
             var dao = new QuestionDAO();
             var model = dao.ListAllPaging(searchString, page, pageSize);
             ViewBag.SearchString = searchString;
+            SetViewBag();
             return View(model);
         }
         public void SetViewBag(long? selectedId = null)
@@ -96,4 +97,4 @@ namespace DACS.Areas.Admin.Controllers
             }
         }
     }
-}*/
+}

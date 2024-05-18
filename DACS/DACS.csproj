@@ -2000,6 +2000,7 @@
     <Content Include="Areas\Admin\Views\Shared\_TopMenu.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Question\Index.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -2013,7 +2014,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\Question\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>

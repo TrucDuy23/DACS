@@ -41,7 +41,7 @@ namespace DACS.Models
         [StringLength(20)]
         public string FinishTimeEssay { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
 
         [StringLength(10)]
         public string Score { get; set; }
