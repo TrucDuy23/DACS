@@ -28,7 +28,7 @@
                 return;
             }
             $.ajax({
-                url: "/Exam/AddExamAjax",
+                url: "/Admin/Exam/AddExamAjax",
                 data:
                     {
                         name: name.value,
@@ -89,7 +89,7 @@
             var code = btn.data('code');
             var metatitle = btn.data('metatitle');
             var questionlist = btn.data('questionlist');
-            var answerlist = btn.data('answerlist');
+            var answerlist = btn.data('answerlist'); 
             var time = btn.data('time');
             var productid = btn.data('productid');
             var totalquestion = btn.data('totalquestion');
@@ -116,7 +116,7 @@
             var valueenddate = document.getElementById(enddate);
 
             $.ajax({
-                url: "/Exam/UpdateExamAjax",
+                url: "/Admin/Exam/UpdateExamAjax",
                 data:
                     {
                         id: listid,

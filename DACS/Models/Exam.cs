@@ -41,7 +41,7 @@ namespace DACS.Models
         [StringLength(1)]
         public string Type { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
 
         public string QuestionEssay { get; set; }
 

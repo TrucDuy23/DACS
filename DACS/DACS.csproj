@@ -1775,6 +1775,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ExamController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
@@ -1786,6 +1787,7 @@
     <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="DAO\ExamDAO.cs" />
     <Compile Include="DAO\ProductCategoryDAO.cs" />
     <Compile Include="DAO\ProductDAO.cs" />
     <Compile Include="DAO\QuestionDAO.cs" />
@@ -2001,6 +2003,7 @@
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Question\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Exam\Index.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
