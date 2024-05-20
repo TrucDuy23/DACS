@@ -18,7 +18,7 @@ namespace DACS.DAO
         {
             return db.ProductCategories.Where(x => x.Status == true).OrderBy(x => x.DisplayOrder).ToList();
         }
-        public ProductCategory ViewDetail(int id)
+        public ProductCategory ViewDetail(long id)
         {
             return db.ProductCategories.Find(id);
         }
