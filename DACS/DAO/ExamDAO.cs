@@ -78,5 +78,10 @@ namespace DACS.DAO
 
             }
         }
+
+        public List<Exam> ListAllExam()
+        {
+            return db.Exams.Where(x => x.Status == true).OrderByDescending(x => x.ID).ToList();
+        }
     }
 }
