@@ -53,7 +53,7 @@ namespace DACS.Controllers
                     ModelState.AddModelError("", "Tài khoản không có quyền đăng nhập");
                 }
             }
-            return View("Index");
+            return View("model");
         }
     }
 }

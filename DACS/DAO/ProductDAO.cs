@@ -47,7 +47,7 @@ namespace DACS.DAO
             db.SaveChanges();
             return entity.ID;
         }
-        public Product ViewDetail(int id)
+        public Product ViewDetail(long id)
         {
 
             return db.Products.Find(id);
