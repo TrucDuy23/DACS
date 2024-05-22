@@ -13,6 +13,7 @@ namespace DACS.Models
 
         [StringLength(250)]
         public string Name { get; set; }
+
         [StringLength(250)]
         public string MetaTitle { get; set; }
 
@@ -30,9 +31,8 @@ namespace DACS.Models
         [StringLength(50)]
         public string ModifiedBy { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
 
         public bool? ShowOnHome { get; set; }
-
     }
 }

@@ -15,4 +15,5 @@ namespace DACS.Models
         [Required(ErrorMessage = "Mời bạn nhập password")]
         public string Password { set; get; }
     }
+
 }

@@ -1809,7 +1809,6 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\CommentViewModel.cs" />
-    <None Include="Views\Product\Class1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

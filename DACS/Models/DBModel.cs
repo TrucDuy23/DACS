@@ -12,13 +12,13 @@ namespace DACS.Models
         {
         }
 
+        public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Exam> Exams { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<Result> Results { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
