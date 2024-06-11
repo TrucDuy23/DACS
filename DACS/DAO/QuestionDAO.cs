@@ -43,7 +43,7 @@ namespace DACS.DAO
             }
             return model.OrderByDescending(x => x.ID).ToPagedList(page, pagesize);
         }
-        public Question ViewDetail(int id)
+        public Question ViewDetail(long id)
         {
 
             return db.Questions.Find(id);
@@ -65,6 +65,12 @@ namespace DACS.DAO
                 return false;
 
             }
+        }
+
+
+        public List<Question> ListExamQuestion(string pList)
+        {
+            return db.Questions.Where(x => pList.Contains("*" + x.ID.ToString() + "*")).ToList();
         }
     }
 }

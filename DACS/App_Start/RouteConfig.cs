@@ -31,6 +31,13 @@ namespace DACS
             defaults: new { controller = "Exam", action = "Category", id = UrlParameter.Optional },
             namespaces: new[] { "DACS.Controllers" });
 
+
+            routes.MapRoute(
+           name: "Exam Detail",
+           url: "chi-tiet-kiem-tra/{metatitle}-{id}",
+           defaults: new { controller = "Exam", action = "Detail", id = UrlParameter.Optional },
+           namespaces: new[] { "DACS.Controllers" });
+
             routes.MapRoute(
             name: "Product Detail",
             url: "chi-tiet/{metatitle}-{id}-{detailid}",

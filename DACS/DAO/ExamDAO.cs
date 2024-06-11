@@ -43,7 +43,7 @@ namespace DACS.DAO
             }
             return model.OrderByDescending(x => x.ID).ToPagedList(page, pagesize);
         }
-        public Exam ViewDetail(int id)
+        public Exam ViewDetail(long id)
         {
 
             return db.Exams.Find(id);
@@ -82,6 +82,32 @@ namespace DACS.DAO
         public List<Exam> ListAllExam()
         {
             return db.Exams.Where(x => x.Status == true).OrderByDescending(x => x.ID).ToList();
+        }
+
+
+
+        public List<Exam> ListByType(string searchString, string Type)
+        {
+            IOrderedQueryable<Exam> model = db.Exams;
+            if (Type == "0")
+            {
+                if (!string.IsNullOrEmpty(searchString))
+                    return model.Where(x => x.Name.ToString().Contains(searchString)).Where(x => x.Status).OrderByDescending(x => x.StartDate).ToList();
+                else
+                {
+                    return model.Where(x => x.Status).OrderByDescending(x => x.StartDate).ToList();
+                }
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    model = model.Where(x => x.Name.ToString().Contains(searchString)).Where(x => x.Status).OrderByDescending(x => x.StartDate);
+                    return model.Where(x => x.Type == Type).ToList();
+                }
+                return db.Exams.Where(x => x.Type == Type).ToList();
+            }
+
         }
     }
 }

@@ -1,0 +1,82 @@
+﻿@model DACS.Models.Exam
+
+@{
+    ViewBag.Title = "Bài ôn tập - kiểm tra";
+    Layout = "~/Views/Shared/LayoutExam.cshtml";
+    var examquestion = (List<DACS.Models.Question>)ViewBag.ExamQuestion;
+    var result = (DACS.Models.Result)ViewBag.Result;
+}
+
+@section Childcss
+{
+    <style>
+        .circle {
+            border: 1px solid #dee2e6;
+            border-radius: 50%;
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        .circleblue {
+            border: 1px solid #dee2e6;
+            border-radius: 50%;
+            text-align: center;
+            padding-top: 10px;
+            background-color: #325d81;
+        }
+
+        .circlelist {
+            border: 1px solid #dee2e6;
+            border-radius: 50%;
+            text-align: center;
+            padding-top: 2px;
+        }
+
+        .circleblistlue {
+            border: 1px solid #dee2e6;
+            border-radius: 50%;
+            text-align: center;
+            padding-top: 2px;
+        }
+    </style>
+}
+<div style="text-align:center; width:70%; padding-left:30%; padding-top: 30%;" id="div-startquiz">
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header" style="background-color: lightblue">
+            <div style="float: left; width: 10%">
+                <a href="\trang-chu"><img src="~/assets/client/images/logo10.png" /></a>
+            </div>
+            <div style="float:right; width:90%; margin-top: 4px;">
+                <h5 class="my-0 font-weight-normal"> @Model.Name</h5>
+            </div>
+        </div>
+        <div class="card-body" style="text-align:center">
+            <p style="color:red">Bài ôn tập</p>
+            <ul class="list-unstyled" mt-3 mb-4>
+                <li>
+                    Bạn có
+                    <b style="font-size:17pt; color:blue">@Model.Time</b> Phút để trả lời câu hỏi
+                    <b style="font-size:17pt; color:blue">@Model.TotalQuestion</b> câu hỏi.
+                </li>
+
+                <li>
+                    Mã số sinh viên <b style="font-size:17pt; color:blue">@ViewBag.Msnv</b>
+                </li>
+            </ul>
+            @if (result != null)
+            {
+                <input type="button" disabled="disabled" value="Bạn đã hoàn thành bài kiểm tra" class="btn btn-lg btn-block btn-active-icon-succes" id="btnExit" />
+                <br /><a href="/lich-su-kiem-tra"></a>
+
+            }
+            else
+            {
+                <input type="submit" value="Vào làm bài" data-examid="@Model.ID" data-userid="@ViewBag.UserID" class="btn btn-lg btn-block btn-succes" id="btnStartQuiz" />
+                <br /><a href="/lich-su-kiem-tra"></a>
+            }
+        </div>
+    </div>
+</div>
+
+
+
