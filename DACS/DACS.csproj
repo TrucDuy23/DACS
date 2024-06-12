@@ -1350,6 +1350,7 @@
     <Content Include="assets\admin\libs\toastr\toastr.min.js" />
     <Content Include="assets\admin\libs\x-editable\bootstrap-editable.css" />
     <Content Include="assets\admin\libs\x-editable\bootstrap-editable.min.js" />
+    <Content Include="assets\client\controller\examController.js" />
     <Content Include="assets\client\controller\productController.js" />
     <Content Include="assets\client\css\quiz.css" />
     <Content Include="assets\client\css\style-dark-rtl.css" />
@@ -1548,6 +1549,7 @@
     <Content Include="assets\client\vendor\apexcharts\css\apexcharts.css" />
     <Content Include="assets\client\vendor\apexcharts\js\apexcharts.min.js" />
     <Content Include="assets\client\vendor\bootstrap-icons\bootstrap-icons.css" />
+    <Content Include="assets\client\vendor\bootstrap\bootbox.min.js" />
     <Content Include="assets\client\vendor\bootstrap\dist\js\bootstrap.bundle.min.js" />
     <Content Include="assets\client\vendor\choices\css\choices.min.css" />
     <Content Include="assets\client\vendor\choices\js\choices.min.js" />

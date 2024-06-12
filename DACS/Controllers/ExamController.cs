@@ -1,5 +1,6 @@
 ﻿using DACS.Common;
 using DACS.DAO;
+using DACS.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,89 @@ namespace DACS.Controllers
             catch
             {
                 return View();
+            }
+        }
+        [HttpPost]
+        public JsonResult AddResult(long examid, long userid)
+        {
+            try
+            {
+                var dao = new ResultDAO();
+                Result result = new Result();
+
+                result.ExamID = examid;
+                result.UserID = userid;
+                result.Status = false;
+                result.ResultQuiz = "";
+                result.ResultEssay = "";
+                result.StartDateQuiz = DateTime.Now.ToShortDateString();
+                result.StartTimeQuiz = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute;
+                result.Score = "0";
+                bool addresult = dao.Insert(result);
+                if (addresult == true)
+                {
+
+                    return Json(new
+                    {
+                        status = true
+                    });
+                }
+                else
+                {
+                    return Json(new
+                    {
+                        status = false
+                    });
+                }
+            }
+            catch
+            {
+                return Json(new
+                {
+                    status = false
+                });
+            }
+        }
+
+        [HttpPost]
+        public JsonResult UpdateResult(long examid, long userid, string resultessay, string resultquiz)
+        {
+            try
+            {
+                var dao = new ResultDAO();
+                Result result = new Result();
+
+                result.ExamID = examid;
+                result.UserID = userid;
+                result.Status = true;
+                result.ResultQuiz = resultquiz;
+                result.ResultEssay = resultessay;
+                result.FinishTimeEssay = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute;
+                result.FinishTimeQuiz = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute;
+
+                bool addresult = dao.Update(result);
+                if (addresult == true)
+                {
+
+                    return Json(new
+                    {
+                        status = true
+                    });
+                }
+                else
+                {
+                    return Json(new
+                    {
+                        status = false
+                    });
+                }
+            }
+            catch
+            {
+                return Json(new
+                {
+                    status = false
+                });
             }
         }
     }
