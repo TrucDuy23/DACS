@@ -117,5 +117,14 @@ namespace DACS.DAO
                 }
             }
         }
+        public bool CheckUserName(string userName)
+        {
+            return db.Users.Any(x => x.UserName == userName);
+        }
+
+        public bool CheckEmail(string email)
+        {
+            return db.Users.Any(x => x.Email == email);
+        }
     }
 }

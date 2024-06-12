@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using DACS.Common;
 using DACS.DAO;
 using DACS.Models;
+using DACS.ViewModel;
 
 namespace DACS.Controllers
 {
@@ -54,6 +55,56 @@ namespace DACS.Controllers
                 }
             }
             return View("model");
+        }
+        public ActionResult Logout()
+        {
+            Session[CommonConstants.USER_SESSION] = null;
+            return RedirectToAction("Login", "User");
+        }
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(RegisterViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                // Kiểm tra và xử lý lỗi như trước (nếu cần)
+            }
+
+            var dao = new UserDAO();
+            if (dao.CheckUserName(model.Register.UserName))
+            {
+                ModelState.AddModelError("", "Tên tài khoản đã tồn tại.");
+            }
+            else if (dao.CheckEmail(model.Register.Email))
+            {
+                ModelState.AddModelError("", "Email đã tồn tại.");
+            }
+            else
+            {
+                // Tiến hành tạo mới User từ dữ liệu trong RegisterViewModel
+                var user = model.Register;
+                user.Password = Encryptor.MD5Hash(user.Password); // Bạn có thể mã hóa mật khẩu ở đây
+                user.CreateDate = DateTime.Now;
+                user.Status = true;
+
+                var result = dao.Insert(user);
+                if (result > 0)
+                {
+                    ViewBag.Success = "Đăng ký thành công.";
+                    model = new RegisterViewModel(); // Xóa form
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Đăng ký không thành công.");
+                }
+            }
+
+            return View(model);
         }
     }
 }

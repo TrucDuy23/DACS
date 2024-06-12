@@ -1,4 +1,7 @@
-﻿@{
+﻿@using DACS.Models
+@using DACS.Common
+@using System.Web
+@{
     Layout = null;
     var productcategory = (List<DACS.Models.ProductCategory>)ViewBag.CategoryID;
 }
@@ -30,8 +33,8 @@
     <link rel="stylesheet" type="text/css" href="/assets/client/vendor/glightbox/css/glightbox.css">
 
     <!-- Theme CSS -->
-    <link rel="stylesheet" type="text/css" href="/assets/client/css/style.css">
     @RenderSection("Childcss", required: false)
+    <link rel="stylesheet" type="text/css" href="/assets/client/css/style.css">
 
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -54,7 +57,7 @@
         <nav class="navbar navbar-expand-xl">
             <div class="container-fluid px-3 px-xl-5">
                 <!-- Logo START -->
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="\trang-chu">
                     <img class="light-mode-item navbar-brand-item" src="/assets/client/images/logo10.png" alt="logo">
                     <img class="dark-mode-item navbar-brand-item" src="/assets/client/images/logo-light.svg" alt="logo">
                 </a>
@@ -76,13 +79,21 @@
                         <!-- Nav item 1 Demos -->
                         <li class="nav-item dropdown dropdown-menu-shadow-stacked">
                             <a class="nav-link bg-primary bg-opacity-10 rounded-3 text-primary px-3 py-3 py-xl-0" href="#" id="categoryMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-ui-radios-grid me-2"></i><span>Category</span></a>
-                            <ul class="dropdown-menu" aria-labelledby="categoryMenu">
-                                @foreach (var category in productcategory)
-                                {
-                                    <li> <a class="dropdown-item" href="\khoa-hoc\@category.MetaTitle-@category.ID">@category.Name</a></li>
-                                }
-                                <li> <a class="dropdown-item bg-primary text-primary bg-opacity-10 rounded-2 mb-0" href="\khoa-hoc\tat-ca-0">Tất cả khóa học</a></li>
-                            </ul>
+                            @if (productcategory != null)
+                            {
+                                <ul class="dropdown-menu" aria-labelledby="categoryMenu">
+                                    @foreach (var category in productcategory)
+                                    {
+                                        <li> <a class="dropdown-item" href="\khoa-hoc\@category.MetaTitle-@category.ID">@category.Name</a></li>
+                                    }
+                                    <li> <a class="dropdown-item bg-primary text-primary bg-opacity-10 rounded-2 mb-0" href="\khoa-hoc\tat-ca-0">Tất cả khóa học</a></li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <p>Danh sách danh mục sản phẩm đang trống.</p>
+                            }
+
                         </li>
                     </ul>
                     <!-- Nav category menu END -->
@@ -106,14 +117,21 @@
                             <a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Khóa học</a>
                             <ul class="dropdown-menu" aria-labelledby="pagesMenu">
                                 <li> <a class="dropdown-item" href="\khoa-hoc\tat-ca-0">Tất cả khóa học</a></li>
-                                @foreach (var category1 in productcategory)
+                                @if (productcategory != null)
                                 {
-                                    <li> <a class="dropdown-item" href="\khoa-hoc\@category1.MetaTitle-@category1.ID">@category1.Name</a></li>
-
+                                    foreach (var category1 in productcategory)
+                                    {
+                                        <li> <a class="dropdown-item" href="\khoa-hoc\@category1.MetaTitle-@category1.ID">@category1.Name</a></li>
+                                    }
                                 }
-
+                                else
+                                {
+                                    <li> <span class="dropdown-item">Danh sách danh mục sản phẩm đang trống.</span></li>
+                                }
                             </ul>
                         </li>
+
+
 
                         <!-- Nav item 2 Pages -->
                         <li class="nav-item dropdown">
@@ -156,35 +174,45 @@
                 </div>
                 <!-- Main navbar END -->
                 <!-- Profile START -->
-                <div class="dropdown ms-1 ms-lg-0">
-                    <a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img class="avatar-img rounded-circle" src="/assets/client/images/avatar/01.jpg" alt="avatar">
-                    </a>
-                    <ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
-                        <!-- Profile info -->
-                        <li class="px-3">
-                            <div class="d-flex align-items-center">
-                                <!-- Avatar -->
-                                <div class="avatar me-3">
-                                    <img class="avatar-img rounded-circle shadow" src="/assets/client/images/avatar/01.jpg" alt="avatar">
-                                </div>
-                                <div>
-                                    <a class="h6" href="#">Lori Ferguson</a>
-                                    <p class="small m-0">example@gmail.com</p>
-                                </div>
-                            </div>
-                            <hr>
-                        </li>
-                        <!-- Links -->
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
-                        <li><a class="dropdown-item bg-danger-soft-hover" href="#"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
-                        <li> <hr class="dropdown-divider"></li>
+                @{
+                    var userSession = Session[CommonConstants.USER_SESSION] as UserLogin; // Ép kiểu session thành UserLogin
+                }
 
-                    </ul>
-                </div>
-                <!-- Profile START -->
+                @if (userSession != null)
+                {
+                    <div class="dropdown ms-1 ms-lg-0">
+                        <a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img class="avatar-img rounded-circle" src="/assets/client/images/avatar/01.jpg" alt="avatar">
+                        </a>
+                        <ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
+                            <!-- Thông tin hồ sơ -->
+                            <li class="px-3">
+                                <div class="d-flex align-items-center">
+                                    <!-- Hình đại diện -->
+                                    <div class="avatar me-3">
+                                        <img class="avatar-img rounded-circle shadow" src="/assets/client/images/avatar/01.jpg" alt="avatar">
+                                    </div>
+                                    <div>
+                                        <a class="h6" href="#">@userSession.Name</a>
+                                        <p class="small m-0">@userSession.Email</p>
+                                    </div>
+                                </div>
+                                <hr>
+                            </li>
+                            <!-- Liên kết -->
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-person fa-fw me-2"></i>Chỉnh sửa hồ sơ</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Cài đặt tài khoản</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Trợ giúp</a></li>
+                            <li><a class="dropdown-item bg-danger-soft-hover" href="@Url.Action("Logout", "User")"><i class="bi bi-power fa-fw me-2"></i>Đăng xuất</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <a class="btn btn-primary" href="@Url.Action("Login", "User")">Đăng nhập</a>
+                }
+                <!-- Profile END -->
             </div>
         </nav>
         <!-- Logo Nav END -->
